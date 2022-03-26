@@ -1,0 +1,31 @@
+version: "3.7"
+services:
+  ui-root:
+    image: openemp/root-ui:latest
+    networks:
+      openemp:
+        aliases:
+          - ui-root
+  ui-style:
+    image: openemp/style-ui:latest
+    networks:
+      openemp:
+        aliases:
+          - ui-style
+  ui-login:
+    image: openemp/login-ui:latest
+    networks:
+      openemp:
+        aliases:
+          - ui-login
+
+  api-user:
+    image: openemp/user-api:latest
+    networks:
+      openemp:
+        aliases:
+          - api-user
+    environment:
+      - spring_profiles_active=dev
+networks:
+  openemp:
