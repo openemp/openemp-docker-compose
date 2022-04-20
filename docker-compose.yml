@@ -23,7 +23,8 @@ services:
     volumes:
       - "./proxy/confs/nginx.conf:/etc/nginx/nginx.conf"
     ports:
-      - "8081:80"
+      - "80:80"
+      - "443:80"
   ui-style:
     image: openemp/style-ui:latest
     volumes:
