@@ -11,4 +11,4 @@ jobs:
         uses: actions/checkout@v2
       -
         name: Run Ansible
-        run: ansible-playbook .github/playbook.yml -i .github/inventory/sample/hosts.yml --extra-vars "vm_ip=${{ secrets.GCP_VM_IP }} vm_user=${{ secrets.GCP_VM_USER }} deploy_user=${{ secrets.GCP_DEPLOY_USER }}"
+        run: ansible-playbook .github/playbook/playbook.yml -i .github/playbook/inventory/sample/hosts.yml --extra-vars "vm_ip=${{ secrets.GCP_VM_IP }} vm_user=${{ secrets.GCP_VM_USER }} deploy_user=${{ secrets.GCP_DEPLOY_USER }}"
