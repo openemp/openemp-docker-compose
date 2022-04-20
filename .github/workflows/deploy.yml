@@ -9,6 +9,13 @@ jobs:
       - 
         name: Checkout
         uses: actions/checkout@v2
+      - 
+        name: Install SSH key
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.GCP_SSH_KEY }}
+          known_hosts: ${{ secrets.SSH_KNOWN_HOSTS }}
+          if_key_exists: ignore
       -
         name: Run Ansible
         run: ansible-playbook .github/playbook/playbook.yml -i .github/playbook/inventory/sample/hosts.yml --extra-vars "vm_ip=${{ secrets.GCP_VM_IP }} vm_user=${{ secrets.GCP_VM_USER }} deploy_user=${{ secrets.GCP_DEPLOY_USER }}"
