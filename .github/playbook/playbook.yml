@@ -1,0 +1,11 @@
+---
+
+- hosts: vm
+  become: true
+  roles:
+    - role: setup
+      sudo: true
+      sudo_user: {{ deploy_user }}
+    - role: deploy
+      sudo: true
+      sudo_user: {{ deploy_user }}
