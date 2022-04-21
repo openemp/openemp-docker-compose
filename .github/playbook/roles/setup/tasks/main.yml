@@ -2,11 +2,15 @@
 - name: Prepare project directory
   file:
     state: absent
-    path: /home/{{ deploy_user }}
+    path: ~/openemp
+
+- name: Create project directory
+  file:
+    state: directory
+    path: ~/openemp
 
 - name: Checkout git repositroy
   ansible.builtin.git:
     repo: https://github.com/openemp/openemp-docker-compose.git
-    dest: /home/{{ deploy_user }}/openemp
+    dest: ~/openemp
     force: yes
- 

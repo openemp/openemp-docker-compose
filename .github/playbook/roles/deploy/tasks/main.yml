@@ -1,21 +1,15 @@
 ---
-- name: Install docker-compose
-  apt:
-    name: docker-compose
-    state: present
-
-- name: User to join docker group
-  user:
-    name: '{{ deploy_user }}'
-    groups: docker
-    append: yes
-
 - name: Ensure services are down
   ansible.builtin.command:
     cmd: docker-compose -p emp down -v
-    chdir: /home/{{ deploy_user }}/openemp
+    chdir: ~/openemp
+
+- name: Pull latest images
+  ansible.builtin.command:
+    cmd: docker-compose -p emp pull
+    chdir: ~/openemp
 
 - name: Start services
   ansible.builtin.command:
-    cmd: docker-compose -p emp up
-    chdir: /home/{{ deploy_user }}/openemp
+    cmd: docker-compose -p emp up -d
+    chdir: ~/openemp
